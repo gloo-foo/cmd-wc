@@ -3,10 +3,10 @@ package command_test
 import (
 	"testing"
 
-	command "github.com/gloo-foo/cmd-wc"
-
 	"github.com/gloo-foo/testable"
 	"github.com/gloo-foo/testable/assertion"
+
+	command "github.com/gloo-foo/cmd-wc"
 )
 
 func TestWc_Default_AllCounts(t *testing.T) {
@@ -193,20 +193,20 @@ func TestWc_LinesAndMaxLineLength(t *testing.T) {
 func TestWc_TableDriven(t *testing.T) {
 	tests := []struct {
 		name     string
-		opts     []any
 		input    string
 		expected string
+		opts     []any
 	}{
-		{"default single word", nil, "hello\n", "1 1 5"},
-		{"lines three", []any{command.WcLines}, "a\nb\nc\n", "3"},
-		{"words five", []any{command.WcWords}, "one two\nthree four five\n", "5"},
-		{"bytes abc", []any{command.WcBytes}, "abc\n", "3"},
-		{"default empty", nil, "", "0 0 0"},
-		{"lines empty", []any{command.WcLines}, "", "0"},
-		{"words empty", []any{command.WcWords}, "", "0"},
-		{"bytes empty", []any{command.WcBytes}, "", "0"},
-		{"chars unicode", []any{command.WcChars}, "cafe\u0301\n", "5"},
-		{"max line length", []any{command.WcMaxLineLength}, "short\nlonger line\n", "11"},
+		{"default single word", "hello\n", "1 1 5", nil},
+		{"lines three", "a\nb\nc\n", "3", []any{command.WcLines}},
+		{"words five", "one two\nthree four five\n", "5", []any{command.WcWords}},
+		{"bytes abc", "abc\n", "3", []any{command.WcBytes}},
+		{"default empty", "", "0 0 0", nil},
+		{"lines empty", "", "0", []any{command.WcLines}},
+		{"words empty", "", "0", []any{command.WcWords}},
+		{"bytes empty", "", "0", []any{command.WcBytes}},
+		{"chars unicode", "cafe\u0301\n", "5", []any{command.WcChars}},
+		{"max line length", "short\nlonger line\n", "11", []any{command.WcMaxLineLength}},
 	}
 
 	for _, tt := range tests {

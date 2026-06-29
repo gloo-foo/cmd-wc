@@ -4,8 +4,9 @@ import (
 	"slices"
 	"testing"
 
-	wc "github.com/gloo-foo/cmd-wc/alias"
 	"github.com/gloo-foo/testable"
+
+	wc "github.com/gloo-foo/cmd-wc/alias"
 )
 
 // The alias package re-exports the constructor and flag constants under
